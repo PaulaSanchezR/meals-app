@@ -6,7 +6,7 @@ import MealsNavigator from '../navigation/MealsNavigator'
 // import console = require('console');
 
 const CategoriesMealScreen = props => {
-    console.log(props)
+  
     return (
         <View style={Styles.screen}>
             <Text>The Category Meals Screen</Text>
