@@ -2,8 +2,12 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View , Navigation} from 'react-native';
 import * as Font from 'expo-font';
 import {AppLoading} from 'expo' // this component prolong this splash screen the app start until our fons are loaded it load 
+import { enableScreens } from 'react-native-screens'
+
 // only see something on the screen when our assess are load it
 import MealsNavigator from './navigation/MealsNavigator'
+
+enableScreens(); // increase the performance because unlock the screns
 
 const fetchFonts=() =>{
   // loadAsync return a promess

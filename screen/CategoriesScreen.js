@@ -4,31 +4,31 @@
 import React from 'react';
 import {View, StyleSheet,Text, Button, FlatList, TouchableOpacity} from 'react-native';
 import { CATEGORIES } from '../data/dummy-data';
-
+import CategoryGridTile from '../component/CategoryGridTile'
 
 const CategoriesScreen = props => {
     const renderGridItem =(itemData) =>{
         return (
-            <TouchableOpacity 
-                style={Styles.gridItem}
-                onPress={()=>{
-                    props.navigation.navigate({
-                        routeName : 'CategoryMeals', 
-                        params:{
-                            categoryId: itemData.item.id
-                    }})
-                }}>
-                <View >
-                    <Text>{itemData.item.title}</Text>
-                </View>
-            </TouchableOpacity>
+            // we need to pass some data to navigate
+            // we pass a function that we can navigate
+          <CategoryGridTile
+          title={itemData.item.title} 
+          color={itemData.item.color}
+          onSelect={() =>{
+            props.navigation.navigate({
+                routeName : 'CategoryMeals', 
+                params:{
+                    categoryId: itemData.item.id
+                }
+           })
+          }} />
         )
     }
 
     // CategoriesScreen is a Javascript object
     // and we can add a property after creating 
     // special propererty navigationOptions
-    
+
     // CategoriesScreen.navigationOptions = {
     //     headerTitle:'Meal Categories'
     //  }
@@ -48,11 +48,7 @@ const Styles =StyleSheet.create({
         flex:1,
         justifyContent:'center',
         alignItems:'center'
-    },
-    gridItem:{
-        flex:1, // to get much space that I can get
-        margin:15,
-        height:150
     }
+    
 })
 export default CategoriesScreen;
