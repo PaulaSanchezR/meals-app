@@ -12,7 +12,11 @@ const CategoriesScreen = props => {
             <TouchableOpacity 
                 style={Styles.gridItem}
                 onPress={()=>{
-                    props.navigation.navigate({routeName : 'CategoryMeals'})
+                    props.navigation.navigate({
+                        routeName : 'CategoryMeals', 
+                        params:{
+                            categoryId: itemData.item.id
+                    }})
                 }}>
                 <View >
                     <Text>{itemData.item.title}</Text>
@@ -21,11 +25,13 @@ const CategoriesScreen = props => {
         )
     }
 
-    // function are objects and you can access the function as a property
-
-    CategoriesScreen.navigationOptions ={
-        headerTitle:'Meal Categories'
-    }
+    // CategoriesScreen is a Javascript object
+    // and we can add a property after creating 
+    // special propererty navigationOptions
+    
+    // CategoriesScreen.navigationOptions = {
+    //     headerTitle:'Meal Categories'
+    //  }
 
   return (
       <FlatList 
