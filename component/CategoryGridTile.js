@@ -29,24 +29,23 @@ const styles= StyleSheet.create({
         margin:15,
         height:150,
         borderRadius:10,
-        overflow: 'hidden'
-
+        overflow: Platform.OS === 'android' && Platform.Version >= 21 ? 'hidden': 'visible',
+        elevation:20,
+        shadowColor:'black',
+        shadowOpacity: 0.26,
+        shadowRadius:10,
+        shadowOffset: {width:0 , height:2},
     },
     container:{
         flex:1,
         borderRadius:10,
-        shadowColor:'black',
-        shadowOpacity: 0.26,
-        shadowRadius:10,
-        elevation:3,
-        shadowOffset: {width:0 , height:2},
         padding:15,
         alignItems: 'flex-end', // to move to the right
         justifyContent:'flex-end' // flex direcction of the container is top to bottom because is column
     },
     title:{
         fontFamily: 'open-sans-bold',
-        fontSize:22,
+        fontSize:20,
         textAlign:'right'
     }
 })
