@@ -11,6 +11,9 @@ const FavoritesScreen = props => {
     )
 }
 
+FavoritesScreen.navigatinOptions={
+    headerTitle: 'Your Favorites'
+}
 const Styles =StyleSheet.create({
     screen:{
         flex:1,
