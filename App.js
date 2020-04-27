@@ -2,12 +2,28 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View , Navigation} from 'react-native';
 import * as Font from 'expo-font';
 import {AppLoading} from 'expo' // this component prolong this splash screen the app start until our fons are loaded it load 
-import { enableScreens } from 'react-native-screens'
-
+import { useScreens } from 'react-native-screens'
+// *********************************************************
+import { createStore, combineReducers } from 'redux'
+// provider
+import { Provider } from 'react-redux'
+// *********************************************************
 // only see something on the screen when our assess are load it
 import MealsNavigator from './navigation/MealsNavigator'
+import mealsReducer from './store/reducer/meals';
 
-enableScreens(); // increase the performance because unlock the screns
+
+useScreens(); // increase the performance because unlock the screns
+
+// we can have many reducer and we need to combine it to create one root
+
+const rootReducer = combineReducers({
+  meals: mealsReducer
+})
+
+
+const store = createStore(rootReducer); //take a reducer in the end
+
 
 const fetchFonts=() =>{
   // loadAsync return a promess
@@ -31,7 +47,9 @@ export default function App() {
             />
   }
   return (
-        <MealsNavigator/>
+        <Provider store={store}>
+          <MealsNavigator/>
+        </Provider>
   );
 }
 
