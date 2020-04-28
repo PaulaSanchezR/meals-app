@@ -1,7 +1,8 @@
 
 
 import { MEALS } from '../../data/dummy-data'
-import { TOGGLE_FAVORITE } from '../action/meals';
+import { TOGGLE_FAVORITE, SET_FILTERS } from '../action/meals';
+
 
 
 const initialState ={
@@ -27,6 +28,28 @@ const mealsReducer = (state = initialState, action) =>{
                 const meal= state.meals.find(meal => meal.id === action.mealId)
                 return {...state, favoriteMeals: state.favoriteMeals.concat(meal)}
             }
+
+          case SET_FILTERS:
+            // update to our filters meals to reflect the filters set up
+            const appliedFilters = action.filters;
+            // filter always return a new array
+            const updatefilteredMeals = state.meals.filter(meals => {
+                if(appliedFilters.glutenFree && !meal.isGlutenFree){
+                    return false;
+                }
+                if(appliedFilters.lactoseFree && !meal.isLactoseFree){
+                    return false;
+                }
+                if(appliedFilters.vegetarian && !meal.isVegetarian){
+                    return false;
+                }
+                if(appliedFilters.vegan && !meal.isVegan){
+                    return false;
+                }
+                return true; // will return the meal
+            });
+            // I need to return the all state and I will overight my filterMeals with 
+            return {...state, filteredMeals:updatefilteredMeals}
         default:
         return state;
     }
